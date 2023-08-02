@@ -1,0 +1,3 @@
+in middleware->auth.js change the secrettt word use it by import
+in app.js change the password
+in users.js route change the secrett word ,use it by import
