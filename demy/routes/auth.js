@@ -41,12 +41,12 @@ router.post('/',[
         console.log("place3");
         if(!user){
             console.log("place4");
-                res.status(400).json({errors:[{msg:"invalided creditentins"}]})
+                res.status(400).json({errors:[{msg:"invalided creditentins no userr"}]})
                 console.log("place5");
         }
         const isMatch=await bcrypt.compare(password,user.password);
         if(!isMatch){
-            res.status(400).json({errors:[{msg:"invalided creditentins"}]})
+            res.status(400).json({errors:[{msg:"invalided creditentins wrong password"}]})
         }
         
         const payload={
