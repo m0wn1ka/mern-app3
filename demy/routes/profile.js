@@ -8,6 +8,22 @@ const gravatar=require('gravatar');
 const bcrypt=require('bcryptjs');
 const {check,validationResult}=require('express-validator');
 const jwt=require('jsonwebtoken');
+router.get('/me', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.user.id
+    }).populate('user', ['name', 'avatar']);
+
+    if (!profile) {
+      return res.status(400).json({ msg: 'There is no profile for this user' });
+    }
+
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 //for getting full details which is protetected
 router.get('/',auth,async (req,res)=>{
     try{
